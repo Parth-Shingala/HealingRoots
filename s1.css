@@ -1,0 +1,18 @@
+label{
+    display: inline-block;
+    width: 120px;
+    font-family: Garamond;
+}
+input{
+    border-radius: 10px;
+}
+#submit{
+    font-size: 14px;
+    border: 2px solid rgb(12, 0, 0);
+    border-radius: 10px;
+    
+}   
+#submit:hover
+{
+background-color: rgb(146, 171, 233);
+}

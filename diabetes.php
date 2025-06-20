@@ -1,0 +1,236 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Welcome to iCoder. A blog for coding enthusiasts">
+  <title>Healing Roots</title>
+
+  </style>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- Custom CSS Links-->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive-style.css">
+  <script>
+    function logout() {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "logout.php";
+      }
+    }
+</script>
+
+</head>
+
+<body class="body" style="background-color: rgb(252, 255, 101);">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="mainindex.php"> <img src="images/parth.png" width="120px" height="48px"> </a>
+    <!--<a class="navbar-brand" href="#">Healing Roots</a>-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="home.php">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="yoga.php">Yoga</a>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Disease Treatments
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="asthma.php">Asthma</a>
+            <a class="dropdown-item" href="diabetes.php">Diabetes</a>
+            <a class="dropdown-item" href="depression.php">Depression</a>
+            <a class="dropdown-item" href="migraine.php">Migraine</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="appointments.php">Appointment Booking</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.php">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contacts.php">Contact</a>
+        </li>
+
+      </ul>
+      
+      <div class="mx-2">
+        <?php
+        session_start();
+        if (!empty($_SESSION["id"])) {
+          // User is logged in
+          echo '<button class="btn btn-danger" id="logoutBtn" onclick="logout()">Log Out</button>';
+        } else {
+          // User is not logged in
+          echo '<button class="btn btn-danger" id="loginBtn" data-toggle="modal" data-target="#loginModal">Login</button>';
+          echo ' ';
+          echo '<button class="btn btn-danger" id="signupBtn" data-toggle="modal" data-target="#signupModal">SignUp</button>';
+        }
+        ?>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- Login Modal -->
+ 
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login to Healing Roots</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="login.php" method="post">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username or Email</label>
+              <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="usernameemail">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <!--<div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" name="username" class="form-control" id="username" value="" optional>
+                </div>-->
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Get a Healing Roots Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="" action="registration.php" method="post">
+            <div class="form-group">
+              <label for="name" style="margin-top: 5%;">Name: </label>
+              <input type="text" name="name" id="name" class="form-control" required value="">
+              <label for="username" style="margin-top: 5%;">Username : </label>
+              <input type="text" name="username" id="username" required value="" class="form-control"> <br>
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                name="email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+            <div class="form-group">
+              <label for="cexampleInputPassword1">Confirm Password</label>
+              <input type="password" class="form-control" id="cexampleInputPassword1" name="confirmpassword">
+            </div>
+
+            <button type="submit" name="submit" class="btn btn-primary">Creat Account</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="container my-4" style="background-color: rgb(188, 255, 202);">
+        <div class="row featurette d-flex justify-content-center align-items-center">
+            <div class="col-md-7">
+                <h1 style="color: rgb(255, 123, 123);margin-left: 60px;font-family: Lucida Handwriting;">
+                  Diabetes Mellitus
+                  </h1>     
+            </div>
+            <div class="col-md-5">
+                <img class="img" src="images/disease/Diabetes.jpg" alt="" style="height: 205px;width: 370px;margin-top: 35px;">    
+            </div>
+        </div>
+        <div class="row featurette d-flex justify-content-center align-items-center">
+            <div class="col-md-7 order-md-2">
+                <h5 style="color: rgb(57, 83, 255); font-family: Garamond; text-align: justify; font-weight: 100;margin-top: 20px;font-size: 25px;">
+                  Are you suffering from diabetes? Diabetes Mellitus is the medical name of the chronic disease that is commonly known as diabetes. When the pancreas fails to function properly and stops producing insulin, then the body cannot transform the sugar into bundles of energy. If you have been tired of popping in pills that try and administer insulin level so that the sugar in the blood dissolves, or you have been following the all sugar-free and high-protein diet that you might have been prescribed, which ultimately leads to imbalance of the diet you are swearing by, it is time to switch to Naturopathy.  We, at Nirvana Naturopathy offer the best naturopathy treatment for Diabetes Mellitus!</h5>
+            </div>
+            <div class="order-md-2" style="padding: 10px;">
+              <h5 style="color: rgb(57, 83, 255); font-family: Garamond; text-align: justify;margin-top: 20px;font-size: 23px;">
+                Nirvana Naturopathy with its seat in the lap of Nature in Nashik helps people, who are suffering from diabetes to follow the natural route like a proper diet, asanas or yoga, brisk walking and more so that the patients can combat this disease more effectively. We are armed with a pool of naturopaths who have a bankable record of helping patients to do away with this diabetes; a disease that slow poisons you to death. The naturopaths at Nirvana Naturopathy in consultation with you offer the best tailor-made naturopathy for diabetes programs and lets you bank on the best naturopathy for diabetes diet.</h5>
+          </div>
+          <div class="order-md-2" style="padding: 10px;">
+            <h5 style="color: rgb(57, 83, 255); font-family: Garamond; text-align: justify;margin-top: 20px;font-size: 23px;">
+              The naturopaths at our retreat center include in your diet plan plenty of fresh greens, fresh fruits, curd made from cow’s milk, various gourds with a pinch of salt. Citrus fruits, green vegetables, wholesome grains and breads are prescribed according to needs of the patient. In our tailor-made diabetes naturopathy treatment offered, diet plans and exercises are prescribed in tune with the needs of a single patient. </h5>
+        </div>
+            <div class="col-md-5 order-md-1">
+                <img class="img-fluid" src="images/disease/diabetes1.jpg" alt="" style="margin-bottom: 75px;">
+                 
+            </div>
+        </div>
+        <div class="row featurette d-flex justify-content-center align-items-center">
+            <div class="col-md-7">
+                <h4 style="text-align: justify; color: blue;">
+                    
+                    </h4> 
+            </div>
+            <div class="col-md-5">
+                <img class="img-fluid" src="images/" alt="">
+                 
+            </div>
+        </div>
+    </div>
+
+    <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>© 2023-2024 Healing Roots, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+      </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
